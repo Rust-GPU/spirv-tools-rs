@@ -3,6 +3,7 @@
 // to in a simple script and commit them to source control, as they only need
 // to be regenerated when spirv-headers is updated
 
+use std::path::PathBuf;
 use std::{fs, process::Command};
 
 fn python<S: AsRef<std::ffi::OsStr>>(args: impl IntoIterator<Item = S>) -> Result<(), i32> {
@@ -20,7 +21,9 @@ fn python<S: AsRef<std::ffi::OsStr>>(args: impl IntoIterator<Item = S>) -> Resul
 }
 
 fn main() {
-    fs::create_dir_all("generated").expect("unable to create 'generated'");
+    let sys_root = PathBuf::from_iter([env!("CARGO_MANIFEST_DIR"), "..", "..", "spirv-tools-sys"]);
+    fs::create_dir_all(&sys_root.join("generated")).expect("unable to create 'generated'");
+    std::env::set_current_dir(&sys_root).unwrap();
 
     python(&[
         "spirv-tools/utils/update_build_version.py",

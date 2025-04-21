@@ -1,8 +1,9 @@
 [workspace]
 members = [
     "spirv-tools-sys",
+    "tools/generate",
     "tools/package",
-    "tools/install"
+    "tools/install",
 ]
 
 [package]
