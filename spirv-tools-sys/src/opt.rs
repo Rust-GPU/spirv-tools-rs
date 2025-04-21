@@ -55,8 +55,8 @@ pub enum Passes {
     /// Creates a conditional constant propagation (CCP) pass.
     /// This pass implements the SSA-CCP algorithm in
     ///
-    ///      Constant propagation with conditional branches,
-    ///      Wegman and Zadeck, ACM TOPLAS 13(2):181-210.
+    /// Constant propagation with conditional branches,
+    /// Wegman and Zadeck, ACM TOPLAS 13(2):181-210.
     ///
     /// Constant values in expressions and conditional jumps are folded and
     /// simplified. This may reduce code size by removing never executed jump targets

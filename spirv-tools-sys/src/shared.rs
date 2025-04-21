@@ -8,7 +8,7 @@ use std::fmt;
 /// the method will choose the highest version of SPIR-V supported by the target
 /// environment. Examples:
 ///
-/// ```
+/// ```text
 ///    SPV_ENV_VULKAN_1_0           ->  SPIR-V 1.0
 ///    SPV_ENV_VULKAN_1_1           ->  SPIR-V 1.3
 ///    SPV_ENV_VULKAN_1_1_SPIRV_1_4 ->  SPIR-V 1.4
