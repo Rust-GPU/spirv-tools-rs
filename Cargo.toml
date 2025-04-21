@@ -1,4 +1,9 @@
-workspace = { members = ["tools/package", "tools/install"] }
+[workspace]
+members = [
+    "spirv-tools-sys",
+    "tools/package",
+    "tools/install"
+]
 
 [package]
 name = "spirv-tools"
