@@ -40,6 +40,7 @@ fn main() {
     vendor_table("spv-amd-shader-ballot", None);
     vendor_table("debuginfo", None);
     vendor_table("nonsemantic.clspvreflection", None);
+    vendor_table("nonsemantic.vkspreflection", None);
     vendor_table("opencl.debuginfo.100", Some("CLDEBUG100_"));
 
     // This will eventually be moved to spirv-headers
