@@ -40,7 +40,7 @@ pub struct DisassembleOptions {
     pub no_header: bool,
     /// Use friendly names where possible.  The heuristic may expand over
     /// time, but will use common names for scalar types, and debug names from
-    /// OpName instructions.
+    /// `OpName` instructions.
     pub use_friendly_names: bool,
     /// Add some comments to the generated assembly
     pub comment: bool,

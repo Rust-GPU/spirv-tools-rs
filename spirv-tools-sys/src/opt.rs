@@ -33,8 +33,8 @@ pub enum Passes {
     /// Store/Load elimination passes are completed. These cycles cannot be
     /// eliminated with standard dead code elimination.
     AggressiveDCE,
-    /// Replaces the extensions VK_AMD_shader_ballot,VK_AMD_gcn_shader, and
-    /// VK_AMD_shader_trinary_minmax with equivalent code using core instructions and
+    /// Replaces the extensions `VK_AMD_shader_ballot,VK_AMD_gcn_shader`, and
+    /// `VK_AMD_shader_trinary_minmax` with equivalent code using core instructions and
     /// capabilities.
     AmdExtToKhr,
     /// Creates a block merge pass.
@@ -94,8 +94,8 @@ pub enum Passes {
     /// for specific code patterns to recognize array copies.
     CopyPropagateArrays,
     /// Create dead branch elimination pass.
-    /// For each entry point function, this pass will look for SelectionMerge
-    /// BranchConditionals with constant condition and convert to a Branch to
+    /// For each entry point function, this pass will look for `SelectionMerge`
+    /// `BranchConditionals` with constant condition and convert to a Branch to
     /// the indicated label. It will delete resulting dead blocks.
     ///
     /// For all phi functions in merge block, replace all uses with the id
@@ -119,7 +119,7 @@ pub enum Passes {
     /// This pass performs best after access chains are converted to inserts and
     /// extracts and local loads and stores are eliminated. While executing this
     /// pass can be advantageous on its own, it is also advantageous to execute
-    /// this pass after CreateInsertExtractPass() as it will remove any unused
+    /// this pass after `CreateInsertExtractPass()` as it will remove any unused
     /// inserts created by that pass.
     DeadInsertElim,
     /// Create dead variable elimination pass.
@@ -127,21 +127,21 @@ pub enum Passes {
     /// that are not referenced.
     DeadVariableElimination,
     /// Create descriptor scalar replacement pass.
-    /// This pass replaces every array variable |desc| that has a DescriptorSet and
+    /// This pass replaces every array variable |desc| that has a `DescriptorSet` and
     /// Binding decorations with a new variable for each element of the array.
     /// Suppose |desc| was bound at binding |b|.  Then the variable corresponding to
     /// |desc[i]| will have binding |b+i|.  The descriptor set will be the same.  It
     /// is assumed that no other variable already has a binding that will used by one
     /// of the new variables.  If not, the pass will generate invalid Spir-V.  All
-    /// accesses to |desc| must be OpAccessChain instructions with a literal index
+    /// accesses to |desc| must be `OpAccessChain` instructions with a literal index
     /// for the first index.
     DescriptorScalarReplacement,
     /// Creates a eliminate-dead-constant pass.
     /// A eliminate-dead-constant pass removes dead constants, including normal
-    /// contants defined by OpConstant, OpConstantComposite, OpConstantTrue, or
-    /// OpConstantFalse and spec constants defined by OpSpecConstant,
-    /// OpSpecConstantComposite, OpSpecConstantTrue, OpSpecConstantFalse or
-    /// OpSpecConstantOp.
+    /// contants defined by `OpConstant`, `OpConstantComposite`, `OpConstantTrue`, or
+    /// `OpConstantFalse` and spec constants defined by `OpSpecConstant`,
+    /// `OpSpecConstantComposite`, `OpSpecConstantTrue`, `OpSpecConstantFalse` or
+    /// `OpSpecConstantOp`.
     EliminateDeadConstant,
     /// Creates an eliminate-dead-functions pass.
     /// An eliminate-dead-functions pass will remove all functions that are not in
@@ -158,43 +158,43 @@ pub enum Passes {
     FixStorageClass,
     /// Creates a flatten-decoration pass.
     /// A flatten-decoration pass replaces grouped decorations with equivalent
-    /// ungrouped decorations.  That is, it replaces each OpDecorationGroup
-    /// instruction and associated OpGroupDecorate and OpGroupMemberDecorate
-    /// instructions with equivalent OpDecorate and OpMemberDecorate instructions.
+    /// ungrouped decorations.  That is, it replaces each `OpDecorationGroup`
+    /// instruction and associated `OpGroupDecorate` and `OpGroupMemberDecorate`
+    /// instructions with equivalent `OpDecorate` and `OpMemberDecorate` instructions.
     /// The pass does not attempt to preserve debug information for instructions
     /// it removes.
     FlattenDecoration,
     /// Creates a fold-spec-constant-op-and-composite pass.
     /// A fold-spec-constant-op-and-composite pass folds spec constants defined by
-    /// OpSpecConstantOp or OpSpecConstantComposite instruction, to normal Constants
-    /// defined by OpConstantTrue, OpConstantFalse, OpConstant, OpConstantNull, or
-    /// OpConstantComposite instructions. Note that spec constants defined with
-    /// OpSpecConstant, OpSpecConstantTrue, or OpSpecConstantFalse instructions are
+    /// `OpSpecConstantOp` or `OpSpecConstantComposite` instruction, to normal Constants
+    /// defined by `OpConstantTrue`, `OpConstantFalse`, `OpConstant`, `OpConstantNull`, or
+    /// `OpConstantComposite` instructions. Note that spec constants defined with
+    /// `OpSpecConstant`, `OpSpecConstantTrue`, or `OpSpecConstantFalse` instructions are
     /// not handled, as these instructions indicate their value are not determined
     /// and can be changed in future. A spec constant is foldable if all of its
     /// value(s) can be determined from the module. E.g., an integer spec constant
-    /// defined with OpSpecConstantOp instruction can be folded if its value won't
-    /// change later. This pass will replace the original OpSpecContantOp instruction
-    /// with an OpConstant instruction. When folding composite spec constants,
+    /// defined with `OpSpecConstantOp` instruction can be folded if its value won't
+    /// change later. This pass will replace the original `OpSpecContantOp` instruction
+    /// with an `OpConstant` instruction. When folding composite spec constants,
     /// new instructions may be inserted to define the components of the composite
     /// constant first, then the original spec constants will be replaced by
-    /// OpConstantComposite instructions.
+    /// `OpConstantComposite` instructions.
     ///
     /// There are some operations not supported yet:
-    ///   OpSConvert, OpFConvert, OpQuantizeToF16 and
+    ///   `OpSConvert`, `OpFConvert`, `OpQuantizeToF16` and
     ///   all the operations under Kernel capability.
     /// TODO(qining): Add support for the operations listed above.
     FoldSpecConstantOpAndComposite,
     /// Creates a freeze-spec-constant-value pass.
     /// A freeze-spec-constant pass specializes the value of spec constants to
     /// their default values. This pass only processes the spec constants that have
-    /// SpecId decorations (defined by OpSpecConstant, OpSpecConstantTrue, or
-    /// OpSpecConstantFalse instructions) and replaces them with their normal
-    /// counterparts (OpConstant, OpConstantTrue, or OpConstantFalse). The
-    /// corresponding SpecId annotation instructions will also be removed. This
+    /// `SpecId` decorations (defined by `OpSpecConstant`, `OpSpecConstantTrue`, or
+    /// `OpSpecConstantFalse` instructions) and replaces them with their normal
+    /// counterparts (`OpConstant`, `OpConstantTrue`, or `OpConstantFalse`). The
+    /// corresponding `SpecId` annotation instructions will also be removed. This
     /// pass does not fold the newly added normal constants and does not process
-    /// other spec constants defined by OpSpecConstantComposite or
-    /// OpSpecConstantOp.
+    /// other spec constants defined by `OpSpecConstantComposite` or
+    /// `OpSpecConstantOp`.
     FreezeSpecConstantValue,
     /// Creates a graphics robust access pass.
     ///
@@ -202,19 +202,19 @@ pub enum Passes {
     /// arrays, providing guarantees satisfying Vulkan's robustBufferAccess rules.
     ///
     /// TODO(dneto): Clamps coordinates and sample index for pointer calculations
-    /// into storage images (OpImageTexelPointer).  For an cube array image, it
+    /// into storage images (`OpImageTexelPointer`).  For an cube array image, it
     /// assumes the maximum layer count times 6 is at most 0xffffffff.
     ///
     /// NOTE: This pass will fail with a message if:
     /// - The module is not a Shader module.
-    /// - The module declares VariablePointers, VariablePointersStorageBuffer, or
-    ///   RuntimeDescriptorArrayEXT capabilities.
+    /// - The module declares `VariablePointers`, `VariablePointersStorageBuffer`, or
+    ///   `RuntimeDescriptorArrayEXT` capabilities.
     /// - The module uses an addressing model other than Logical
     /// - Access chain indices are wider than 64 bits.
-    /// - Access chain index for a struct is not an OpConstant integer or is out
-    ///  of range. (The module is already invalid if that is the case.)
-    /// - TODO(dneto): The OpImageTexelPointer coordinate component is not 32-bits
-    /// wide.
+    /// - Access chain index for a struct is not an `OpConstant` integer or is out
+    ///   of range. (The module is already invalid if that is the case.)
+    /// - TODO(dneto): The `OpImageTexelPointer` coordinate component is not 32-bits
+    ///   wide.
     ///
     /// NOTE: Access chain indices are always treated as signed integers.  So
     ///   if an array has a fixed size of more than 2^31 elements, then elements
@@ -226,7 +226,7 @@ pub enum Passes {
     ///   In this case, the pass will clamp the index between 0 and 2^15-1
     ///   inclusive.
     GraphicsRobustAccess,
-    /// Creates a pass that converts if-then-else like assignments into OpSelect.
+    /// Creates a pass that converts if-then-else like assignments into `OpSelect`.
     IfConversion,
     /// Creates an exhaustive inline pass.
     /// An exhaustive inline pass attempts to exhaustively inline all function
@@ -240,7 +240,7 @@ pub enum Passes {
     /// An opaque inline pass inlines all function calls in all functions in all
     /// entry point call trees where the called function contains an opaque type
     /// in either its parameter types or return type. An opaque type is currently
-    /// defined as Image, Sampler or SampledImage. The intent is to enable, albeit
+    /// defined as Image, Sampler or `SampledImage`. The intent is to enable, albeit
     /// through brute force, analysis and optimization across these function calls
     /// by subsequent passes in order to remove the storing of opaque types which is
     /// not legal in Vulkan. Functions that are not in the call tree of an entry
@@ -257,10 +257,10 @@ pub enum Passes {
     /// passes to delete the inserts. This pass performs best after access chains are
     /// converted to inserts and extracts and local loads and stores are eliminated.
     InsertExtractElim,
-    /// Replaces the internal version of GLSLstd450 InterpolateAt* extended
+    /// Replaces the internal version of `GLSLstd450` `InterpolateAt`* extended
     /// instructions with the externally valid version. The internal version allows
-    /// an OpLoad of the interpolant for the first argument. This pass removes the
-    /// OpLoad and replaces it with its pointer. glslang and possibly other
+    /// an `OpLoad` of the interpolant for the first argument. This pass removes the
+    /// `OpLoad` and replaces it with its pointer. glslang and possibly other
     /// frontends will create the internal version for HLSL. This pass will be part
     /// of HLSL legalization and should be called after interpolants have been
     /// propagated into their final positions.
@@ -294,7 +294,7 @@ pub enum Passes {
     /// not processed. This is left for future work.
     ///
     /// This pass is most effective if preceeded by Inlining and
-    /// LocalAccessChainConvert. LocalSingleStoreElim and LocalSingleBlockElim
+    /// `LocalAccessChainConvert`. `LocalSingleStoreElim` and `LocalSingleBlockElim`
     /// will reduce the work that this pass has to do.
     LocalMultiStoreElim,
     /// Create value numbering pass.
@@ -318,8 +318,8 @@ pub enum Passes {
     /// currently processed.
     ///
     /// This pass is most effective if preceeded by Inlining and
-    /// LocalAccessChainConvert. This pass will reduce the work needed to be done
-    /// by LocalSingleStoreElim and LocalMultiStoreElim.
+    /// `LocalAccessChainConvert`. This pass will reduce the work needed to be done
+    /// by `LocalSingleStoreElim` and `LocalMultiStoreElim`.
     ///
     /// Only functions in the call tree of an entry point are processed.
     LocalSingleBlockLoadStoreElim,
@@ -331,7 +331,7 @@ pub enum Passes {
     /// stored and eliminate any resulting dead code.
     ///
     /// Currently, the presence of access chains and function calls can inhibit this
-    /// pass, however the Inlining and LocalAccessChainConvert passes can make it
+    /// pass, however the Inlining and `LocalAccessChainConvert` passes can make it
     /// more effective. In additional, many non-load/store memory operations are
     /// not supported and will prohibit optimization of a function. Support of
     /// these operations are future work.
@@ -339,9 +339,9 @@ pub enum Passes {
     /// Only shader modules with relaxed logical addressing (see opt/instruction.h)
     /// are currently processed.
     ///
-    /// This pass will reduce the work needed to be done by LocalSingleBlockElim
-    /// and LocalMultiStoreElim and can improve the effectiveness of other passes
-    /// such as DeadBranchElimination which depend on values for their analysis.
+    /// This pass will reduce the work needed to be done by `LocalSingleBlockElim`
+    /// and `LocalMultiStoreElim` and can improve the effectiveness of other passes
+    /// such as `DeadBranchElimination` which depend on values for their analysis.
     LocalSingleStoreElim,
     /// Create LICM pass.
     /// This pass will look for invariant instructions inside loops and hoist them to
@@ -352,7 +352,7 @@ pub enum Passes {
     /// for the N first or last iteration. For loop with such condition, those N
     /// iterations of the loop will be executed outside of the main loop.
     /// To limit code size explosion, the loop peeling can only happen if the code
-    /// size growth for each loop is under |code_growth_threshold|.
+    /// size growth for each loop is under |`code_growth_threshold`|.
     LoopPeeling,
     /// Creates a loop unswitch pass.
     /// This pass will look for loop independent branch conditions and move the
@@ -382,19 +382,19 @@ pub enum Passes {
     /// class in the function that they are used.
     PrivateToLocal,
     /// Create line propagation pass
-    /// This pass propagates line information based on the rules for OpLine and
-    /// OpNoline and clones an appropriate line instruction into every instruction
+    /// This pass propagates line information based on the rules for `OpLine` and
+    /// `OpNoline` and clones an appropriate line instruction into every instruction
     /// which does not already have debug line instructions.
     ///
     /// This pass is intended to maximize preservation of source line information
     /// through passes which delete, move and clone instructions. Ideally it should
-    /// be run before any such pass. It is a bookend pass with EliminateDeadLines
+    /// be run before any such pass. It is a bookend pass with `EliminateDeadLines`
     /// which can be used to remove redundant line instructions at the end of a
     /// run of such passes and reduce final output file size.
     PropagateLineInfo,
     /// Create a pass to reduce the size of loads.
     /// This pass looks for loads of structures where only a few of its members are
-    /// used.  It replaces the loads feeding an OpExtract with an OpAccessChain and
+    /// used.  It replaces the loads feeding an `OpExtract` with an `OpAccessChain` and
     /// a load of the specific elements.
     ReduceLoadSize,
     /// Create global value numbering pass.
@@ -403,17 +403,17 @@ pub enum Passes {
     RedundancyElimination,
     /// Create dead line elimination pass
     /// This pass eliminates redundant line instructions based on the rules for
-    /// OpLine and OpNoline. Its main purpose is to reduce the size of the file
+    /// `OpLine` and `OpNoline`. Its main purpose is to reduce the size of the file
     /// need to store the SPIR-V without losing line information.
     ///
-    /// This is a bookend pass with PropagateLines which attaches line instructions
+    /// This is a bookend pass with `PropagateLines` which attaches line instructions
     /// to every instruction to preserve line information during passes which
-    /// delete, move and clone instructions. DeadLineElim should be run after
-    /// PropagateLines and all such subsequent passes. Normally it would be one
+    /// delete, move and clone instructions. `DeadLineElim` should be run after
+    /// `PropagateLines` and all such subsequent passes. Normally it would be one
     /// of the last passes to be run.
     RedundantLineInfoElim,
     /// Create relax float ops pass.
-    /// This pass decorates all float32 result instructions with RelaxedPrecision
+    /// This pass decorates all float32 result instructions with `RelaxedPrecision`
     /// if not already so decorated.
     RelaxFloatOps,
     /// Creates a remove duplicate pass.
@@ -424,7 +424,7 @@ pub enum Passes {
     /// * duplicate decorations.
     RemoveDuplicates,
     /// Creates a remove-unused-interface-variables pass.
-    /// Removes variables referenced on the |OpEntryPoint| instruction that are not
+    /// Removes variables referenced on the |`OpEntryPoint`| instruction that are not
     /// referenced in the entry point function or any function in its call tree.
     /// Note that this could cause the shader interface to no longer match other
     /// shader stages.
@@ -438,7 +438,7 @@ pub enum Passes {
     /// This pass converts load/store operations on function local variables into
     /// operations on SSA IDs.  This allows SSA optimizers to act on these variables.
     /// Only variables that are local to the function and of supported types are
-    /// processed (see IsSSATargetVar for details).
+    /// processed (see `IsSSATargetVar` for details).
     SSARewrite,
     /// Creates a strength-reduction pass.
     /// A strength-reduction pass will look for opportunities to replace an
@@ -458,18 +458,18 @@ pub enum Passes {
     /// same value and identical form will be unified and only one constant will
     /// be kept for each unique pair of type and value.
     /// There are several cases not handled by this pass:
-    ///  1) Constants defined by OpConstantNull instructions (null constants) and
-    ///  constants defined by OpConstantFalse, OpConstant or OpConstantComposite
-    ///  with value 0 (zero-valued normal constants) are not considered equivalent.
-    ///  So null constants won't be used to replace zero-valued normal constants,
-    ///  vice versa.
+    ///  1) Constants defined by `OpConstantNull` instructions (null constants) and
+    ///     constants defined by `OpConstantFalse`, `OpConstant` or `OpConstantComposite`
+    ///     with value 0 (zero-valued normal constants) are not considered equivalent.
+    ///     So null constants won't be used to replace zero-valued normal constants,
+    ///     vice versa.
     ///  2) Whenever there are decorations to the constant's result id id, the
-    ///  constant won't be handled, which means, it won't be used to replace any
-    ///  other constants, neither can other constants replace it.
+    ///     constant won't be handled, which means, it won't be used to replace any
+    ///     other constants, neither can other constants replace it.
     ///  3) NaN in float point format with different bit patterns are not unified.
     UnifyConstant,
-    /// Create a pass to upgrade to the VulkanKHR memory model.
-    /// This pass upgrades the Logical GLSL450 memory model to Logical VulkanKHR.
+    /// Create a pass to upgrade to the `VulkanKHR` memory model.
+    /// This pass upgrades the Logical GLSL450 memory model to Logical `VulkanKHR`.
     /// Additionally, it modifies memory, image, atomic and barrier operations to
     /// conform to that model's requirements.
     UpgradeMemoryModel,
@@ -482,12 +482,12 @@ pub enum Passes {
     /// a known driver bug (issue #1209) by identifying the bad code sequences and
     /// rewriting them.
     ///
-    /// Current workaround: Avoid OpUnreachable instructions in loops.
+    /// Current workaround: Avoid `OpUnreachable` instructions in loops.
     Workaround1209,
-    /// Create a pass to replace each OpKill instruction with a function call to a
-    /// function that has a single OpKill.  Also replace each OpTerminateInvocation
+    /// Create a pass to replace each `OpKill` instruction with a function call to a
+    /// function that has a single `OpKill`.  Also replace each `OpTerminateInvocation`
     /// instruction  with a function call to a function that has a single
-    /// OpTerminateInvocation.  This allows more code to be inlined.
+    /// `OpTerminateInvocation`.  This allows more code to be inlined.
     WrapOpKill,
 }
 

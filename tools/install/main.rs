@@ -90,7 +90,7 @@ fn main() {
         let _s = Group::new(&format!("adding '{td}' to $GITHUB_PATH ({gh_path:?})"));
 
         // emulate >> for both empty and non-empty files
-        let has_contents = fs::metadata(&gh_path).map_or(false, |md| md.len() > 0);
+        let has_contents = fs::metadata(&gh_path).is_ok_and(|md| md.len() > 0);
 
         let mut file = fs::OpenOptions::new()
             .append(true)

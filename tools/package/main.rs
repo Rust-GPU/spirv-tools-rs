@@ -95,7 +95,7 @@ fn main() {
             };
 
             let name = if ext.is_empty() {
-                exe.to_string()
+                (*exe).to_string()
             } else {
                 format!("{exe}.{ext}")
             };

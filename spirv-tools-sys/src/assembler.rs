@@ -25,7 +25,7 @@ pub enum DisassembleOptions {
     NoHeader = 0x20,
     /// Use friendly names where possible.  The heuristic may expand over
     /// time, but will use common names for scalar types, and debug names from
-    /// OpName instructions.
+    /// `OpName` instructions.
     FriendlyNames = 0x40,
     /// Add some comments to the generated assembly
     Comment = 0x80,
@@ -41,7 +41,7 @@ extern "C" {
     /// by the context's target environment.
     ///
     /// The options parameter is a bit field of
-    /// spv_text_to_binary_options_t.
+    /// `spv_text_to_binary_options_t`.
     #[link_name = "spvTextToBinaryWithOptions"]
     pub fn assemble(
         tool: *const shared::ToolContext,
@@ -53,8 +53,8 @@ extern "C" {
     ) -> shared::SpirvResult;
 
     /// Decodes the given SPIR-V binary representation to its assembly text. The
-    /// word_count parameter specifies the number of words for binary. The options
-    /// parameter is a bit field of spv_binary_to_text_options_t. Decoded text will
+    /// `word_count` parameter specifies the number of words for binary. The options
+    /// parameter is a bit field of `spv_binary_to_text_options_t`. Decoded text will
     /// be stored into *text. Any error will be written into *diagnostic if
     /// diagnostic is non-null, otherwise the context's message consumer will be
     /// used.
