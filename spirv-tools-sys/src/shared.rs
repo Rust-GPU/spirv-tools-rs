@@ -26,33 +26,33 @@ pub enum TargetEnv {
     Vulkan_1_0,
     /// SPIR-V 1.1 latest revision, no other restrictions.
     Universal_1_1,
-    /// OpenCL Full Profile 2.1 latest revision.
+    /// `OpenCL` Full Profile 2.1 latest revision.
     OpenCL_2_1,
-    /// OpenCL Full Profile 2.2 latest revision.
+    /// `OpenCL` Full Profile 2.2 latest revision.
     OpenCL_2_2,
-    /// OpenGL 4.0 plus GL_ARB_gl_spirv, latest revisions.
+    /// OpenGL 4.0 plus `GL_ARB_gl_spirv`, latest revisions.
     OpenGL_4_0,
-    /// OpenGL 4.1 plus GL_ARB_gl_spirv, latest revisions.
+    /// OpenGL 4.1 plus `GL_ARB_gl_spirv`, latest revisions.
     OpenGL_4_1,
-    /// OpenGL 4.2 plus GL_ARB_gl_spirv, latest revisions.
+    /// OpenGL 4.2 plus `GL_ARB_gl_spirv`, latest revisions.
     OpenGL_4_2,
-    /// OpenGL 4.3 plus GL_ARB_gl_spirv, latest revisions.
+    /// OpenGL 4.3 plus `GL_ARB_gl_spirv`, latest revisions.
     OpenGL_4_3,
-    /// OpenGL 4.5 plus GL_ARB_gl_spirv, latest revisions.
+    /// OpenGL 4.5 plus `GL_ARB_gl_spirv`, latest revisions.
     OpenGL_4_5,
     /// SPIR-V 1.2, latest revision, no other restrictions.
     Universal_1_2,
-    /// OpenCL Full Profile 1.2 plus cl_khr_il_program, latest revision.
+    /// `OpenCL` Full Profile 1.2 plus `cl_khr_il_program`, latest revision.
     OpenCL_1_2,
-    /// OpenCL Embedded Profile 1.2 plus cl_khr_il_program, latest revision.
+    /// `OpenCL` Embedded Profile 1.2 plus `cl_khr_il_program`, latest revision.
     OpenCLEmbedded_1_2,
-    /// OpenCL Full Profile 2.0 plus cl_khr_il_program, latest revision.
+    /// `OpenCL` Full Profile 2.0 plus `cl_khr_il_program`, latest revision.
     OpenCL_2_0,
-    /// OpenCL Embedded Profile 2.0 plus cl_khr_il_program, latest revision.
+    /// `OpenCL` Embedded Profile 2.0 plus `cl_khr_il_program`, latest revision.
     OpenCLEmbedded_2_0,
-    /// OpenCL Embedded Profile 2.1 latest revision.
+    /// `OpenCL` Embedded Profile 2.1 latest revision.
     OpenCLEmbedded_2_1,
-    /// OpenCL Embedded Profile 2.2 latest revision.
+    /// `OpenCL` Embedded Profile 2.2 latest revision.
     OpenCLEmbedded_2_2,
     /// SPIR-V 1.3 latest revision, no other restrictions.
     Universal_1_3,
@@ -62,7 +62,7 @@ pub enum TargetEnv {
     WebGPU_0,
     /// SPIR-V 1.4 latest revision, no other restrictions.
     Universal_1_4,
-    /// Vulkan 1.1 with VK_KHR_spirv_1_4, i.e. SPIR-V 1.4 binary.
+    /// Vulkan 1.1 with `VK_KHR_spirv_1_4`, i.e. SPIR-V 1.4 binary.
     Vulkan_1_1_Spirv_1_4,
     /// SPIR-V 1.5 latest revision, no other restrictions.
     Universal_1_5,

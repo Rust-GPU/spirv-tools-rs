@@ -78,10 +78,10 @@ extern "C" {
     /// if
     ///
     /// 1) the members of the structs are either the same type or are structs with
-    /// same layout, and
+    ///    same layout, and
     ///
     /// 2) the decorations that affect the memory layout are identical for both
-    /// types.  Other decorations are not relevant.
+    ///    types.  Other decorations are not relevant.
     #[link_name = "spvValidatorOptionsSetRelaxStoreStruct"]
     pub fn validator_options_set_relax_store_struct(opts: *mut ValidatorOptions, toggle: bool);
 
@@ -89,8 +89,8 @@ extern "C" {
     /// in logical addressing mode.
     ///
     /// When relaxed, it will allow the following usage cases of pointers:
-    /// 1) OpVariable allocating an object whose type is a pointer type
-    /// 2) OpReturnValue returning a pointer value
+    /// 1) `OpVariable` allocating an object whose type is a pointer type
+    /// 2) `OpReturnValue` returning a pointer value
     #[link_name = "spvValidatorOptionsSetRelaxLogicalPointer"]
     pub fn validator_options_set_relax_logical_pointer(opts: *mut ValidatorOptions, toggle: bool);
 
@@ -110,7 +110,7 @@ extern "C" {
 
     /// Records whether the validator should use "relaxed" block layout rules.
     /// Relaxed layout rules are described by Vulkan extension
-    /// VK_KHR_relaxed_block_layout, and they affect uniform blocks, storage blocks,
+    /// `VK_KHR_relaxed_block_layout`, and they affect uniform blocks, storage blocks,
     /// and push constants.
     ///
     /// This is enabled by default when targeting Vulkan 1.1 or later.
@@ -129,7 +129,7 @@ extern "C" {
     /// Records whether the validator should use "scalar" block layout rules.
     /// Scalar layout rules are more permissive than relaxed block layout.
     ///
-    /// See Vulkan extnesion VK_EXT_scalar_block_layout.  The scalar alignment is
+    /// See Vulkan extnesion `VK_EXT_scalar_block_layout`.  The scalar alignment is
     /// defined as follows:
     /// - scalar alignment of a scalar is the scalar size
     /// - scalar alignment of a vector is the scalar alignment of its component
@@ -138,9 +138,9 @@ extern "C" {
     /// - scalar alignment of a struct is the max scalar alignment among its
     ///   members
     ///
-    /// For a struct in Uniform, StorageClass, or PushConstant:
+    /// For a struct in Uniform, `StorageClass`, or `PushConstant`:
     /// - a member Offset must be a multiple of the member's scalar alignment
-    /// - ArrayStride or MatrixStride must be a multiple of the array or matrix
+    /// - `ArrayStride` or `MatrixStride` must be a multiple of the array or matrix
     ///   scalar alignment
     #[link_name = "spvValidatorOptionsSetScalarBlockLayout"]
     pub fn validator_options_set_scalar_block_layout(opts: *mut ValidatorOptions, toggle: bool);

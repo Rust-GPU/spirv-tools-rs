@@ -13,17 +13,17 @@ pub struct ValidatorOptions {
     /// if
     ///
     /// 1) the members of the structs are either the same type or are structs with
-    /// same layout, and
+    ///    same layout, and
     ///
     /// 2) the decorations that affect the memory layout are identical for both
-    /// types.  Other decorations are not relevant.
+    ///    types.  Other decorations are not relevant.
     pub relax_struct_store: bool,
     /// Records whether or not the validator should relax the rules on pointer usage
     /// in logical addressing mode.
     ///
     /// When relaxed, it will allow the following usage cases of pointers:
-    /// 1) OpVariable allocating an object whose type is a pointer type
-    /// 2) OpReturnValue returning a pointer value
+    /// 1) `OpVariable` allocating an object whose type is a pointer type
+    /// 2) `OpReturnValue` returning a pointer value
     pub relax_logical_pointer: bool,
     /// Records whether or not the validator should relax the rules because it is
     /// expected that the optimizations will make the code legal.
@@ -39,7 +39,7 @@ pub struct ValidatorOptions {
     pub before_legalization: bool,
     /// Records whether the validator should use "relaxed" block layout rules.
     /// Relaxed layout rules are described by Vulkan extension
-    /// VK_KHR_relaxed_block_layout, and they affect uniform blocks, storage blocks,
+    /// `VK_KHR_relaxed_block_layout`, and they affect uniform blocks, storage blocks,
     /// and push constants.
     ///
     /// This is enabled by default when targeting Vulkan 1.1 or later.
@@ -51,7 +51,7 @@ pub struct ValidatorOptions {
     /// Records whether the validator should use "scalar" block layout rules.
     /// Scalar layout rules are more permissive than relaxed block layout.
     ///
-    /// See Vulkan extnesion VK_EXT_scalar_block_layout.  The scalar alignment is
+    /// See Vulkan extnesion `VK_EXT_scalar_block_layout`.  The scalar alignment is
     /// defined as follows:
     /// - scalar alignment of a scalar is the scalar size
     /// - scalar alignment of a vector is the scalar alignment of its component
@@ -60,9 +60,9 @@ pub struct ValidatorOptions {
     /// - scalar alignment of a struct is the max scalar alignment among its
     ///   members
     ///
-    /// For a struct in Uniform, StorageClass, or PushConstant:
+    /// For a struct in Uniform, `StorageClass`, or `PushConstant`:
     /// - a member Offset must be a multiple of the member's scalar alignment
-    /// - ArrayStride or MatrixStride must be a multiple of the array or matrix
+    /// - `ArrayStride` or `MatrixStride` must be a multiple of the array or matrix
     ///   scalar alignment
     pub scalar_block_layout: bool,
     /// Records whether or not the validator should skip validating standard
