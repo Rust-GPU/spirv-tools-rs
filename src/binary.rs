@@ -26,7 +26,7 @@ pub mod external {
             unsafe {
                 std::slice::from_raw_parts(
                     (*self.inner).code.cast(),
-                    (*self.inner).size * std::mem::size_of::<u32>(),
+                    (*self.inner).size * size_of::<u32>(),
                 )
             }
         }
@@ -44,7 +44,7 @@ pub mod external {
 
 pub enum Binary {
     #[cfg(feature = "use-compiled-tools")]
-    External(self::external::ExternalBinary),
+    External(external::ExternalBinary),
     OwnedU32(Vec<u32>),
     OwnedU8(Vec<u8>),
 }
@@ -63,12 +63,12 @@ impl Binary {
     }
 }
 
-impl std::convert::TryFrom<Vec<u8>> for Binary {
+impl TryFrom<Vec<u8>> for Binary {
     type Error = crate::Error;
 
     #[inline]
     fn try_from(v: Vec<u8>) -> Result<Self, Self::Error> {
-        if v.len() % std::mem::size_of::<u32>() != 0 {
+        if v.len() % size_of::<u32>() != 0 {
             Err(crate::Error {
                 inner: spirv_tools_sys::shared::SpirvResult::InvalidBinary,
                 diagnostic: None,
@@ -125,14 +125,20 @@ impl fmt::Debug for Binary {
 /// digestible byte array
 #[inline]
 pub fn from_binary(bin: &[u32]) -> &[u8] {
-    unsafe { std::slice::from_raw_parts(bin.as_ptr().cast(), std::mem::size_of_val(bin)) }
+    unsafe { std::slice::from_raw_parts(bin.as_ptr().cast(), size_of_val(bin)) }
 }
 
-/// Transmutes a regular byte array into a SPIRV binary of 32 bit words. This
-/// will fail if the input is not `% sizeof(u32)`
+/// Transmutes a regular byte array into a SPIRV binary of 32 bit words.
+/// Fails if the input is not `input.as_ptr() % 4` and `input.len() % 4`.
 #[inline]
 pub fn to_binary(bytes: &[u8]) -> Result<&[u32], crate::Error> {
-    if bytes.len() % std::mem::size_of::<u32>() != 0 {
+    if bytes.len() % size_of::<u32>() != 0 {
+        return Err(crate::Error {
+            inner: spirv_tools_sys::shared::SpirvResult::InvalidBinary,
+            diagnostic: None,
+        });
+    }
+    if bytes.as_ptr().addr() % size_of::<u32>() != 0 {
         return Err(crate::Error {
             inner: spirv_tools_sys::shared::SpirvResult::InvalidBinary,
             diagnostic: None,
@@ -140,10 +146,9 @@ pub fn to_binary(bytes: &[u8]) -> Result<&[u32], crate::Error> {
     }
 
     #[allow(clippy::size_of_in_element_count)]
-    Ok(unsafe {
-        std::slice::from_raw_parts(
-            bytes.as_ptr().cast(),
-            bytes.len() / std::mem::size_of::<u32>(),
-        )
-    })
+    Ok(
+        unsafe {
+            std::slice::from_raw_parts(bytes.as_ptr().cast(), bytes.len() / size_of::<u32>())
+        },
+    )
 }
