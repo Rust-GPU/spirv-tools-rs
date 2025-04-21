@@ -36,7 +36,7 @@ fn main() {
         let _s = Group::new(&format!("downloading {triple} tarball"));
         let mut cmd = Command::new("curl");
         cmd.args(["-f", "-L"])
-        .arg(format!("https://github.com/rust-gpu/spirv-tools-rs/releases/download/{release}/{triple}.tar.zst"))
+        .arg(format!("https://github.com/EmbarkStudios/spirv-tools-rs/releases/download/{release}/{triple}.tar.zst"))
         .stdout(std::process::Stdio::piped());
 
         let output = cmd
