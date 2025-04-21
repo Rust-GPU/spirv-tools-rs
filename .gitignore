@@ -4,3 +4,4 @@ spirv-tools-sys/target
 Cargo.lock
 tools/bin
 tools/*.zst
+.idea
