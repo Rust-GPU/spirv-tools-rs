@@ -63,7 +63,7 @@ fn main() {
             "--strip",
             "always",
             "--enable_bzlmod=false",
-            "--enable_workspace=true",
+            "--enable_workspace",
         ]);
 
         cmd.args(BINARIES.iter().map(|b| format!(":{b}")));
