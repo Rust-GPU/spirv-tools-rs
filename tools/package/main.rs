@@ -56,7 +56,7 @@ fn main() {
             cmd.arg(format!("--output_user_root={bc}"));
         }
 
-        cmd.args(["build", "--compilation_mode", "opt", "--strip", "always"]);
+        cmd.args(["build", "--compilation_mode", "opt", "--strip", "always", "--enable_bzlmod=false"]);
 
         cmd.args(BINARIES.iter().map(|b| format!(":{b}")));
         cmd.current_dir(cwd);
