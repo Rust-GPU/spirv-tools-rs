@@ -76,6 +76,48 @@ pub enum TargetEnv {
     Vulkan_1_4,
 }
 
+impl TargetEnv {
+    /// Returns the `(mayor, minor)` version of spv this enum variant must at least support
+    ///
+    /// The spirv versions for vulkan targets have been pulled from the source of the vulkan spec:
+    /// <https://github.com/KhronosGroup/Vulkan-Docs/blob/main/appendices/spirvenv.adoc?plain=1#L21>
+    pub fn spirv_version(&self) -> (u8, u8) {
+        #[allow(clippy::match_same_arms)]
+        match self {
+            TargetEnv::Universal_1_0 => (1, 0),
+            TargetEnv::Universal_1_1 => (1, 1),
+            TargetEnv::Universal_1_2 => (1, 2),
+            TargetEnv::Universal_1_3 => (1, 3),
+            TargetEnv::Universal_1_4 => (1, 4),
+            TargetEnv::Universal_1_5 => (1, 5),
+            TargetEnv::Universal_1_6 => (1, 6),
+
+            TargetEnv::OpenGL_4_0 => (1, 0),
+            TargetEnv::OpenGL_4_1 => (1, 0),
+            TargetEnv::OpenGL_4_2 => (1, 0),
+            TargetEnv::OpenGL_4_3 => (1, 0),
+            TargetEnv::OpenGL_4_5 => (1, 0),
+
+            TargetEnv::OpenCL_1_2 => (1, 0),
+            TargetEnv::OpenCL_2_0 => (1, 0),
+            TargetEnv::OpenCL_2_1 => (1, 0),
+            TargetEnv::OpenCL_2_2 => (1, 2),
+            TargetEnv::OpenCLEmbedded_1_2 => (1, 0),
+            TargetEnv::OpenCLEmbedded_2_0 => (1, 0),
+            TargetEnv::OpenCLEmbedded_2_1 => (1, 0),
+            TargetEnv::OpenCLEmbedded_2_2 => (1, 2),
+
+            TargetEnv::Vulkan_1_0 => (1, 0),
+            TargetEnv::Vulkan_1_1 => (1, 3),
+            TargetEnv::WebGPU_0 => (1, 3),
+            TargetEnv::Vulkan_1_1_Spirv_1_4 => (1, 4),
+            TargetEnv::Vulkan_1_2 => (1, 5),
+            TargetEnv::Vulkan_1_3 => (1, 6),
+            TargetEnv::Vulkan_1_4 => (1, 6),
+        }
+    }
+}
+
 impl Default for TargetEnv {
     fn default() -> Self {
         // This is the default target environment for (AFAICT) all spirv-tools
