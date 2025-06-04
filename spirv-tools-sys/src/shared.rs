@@ -68,6 +68,12 @@ pub enum TargetEnv {
     Universal_1_5,
     /// Vulkan 1.2 latest revision.
     Vulkan_1_2,
+    /// SPIR-V 1.6 latest revision, no other restrictions.
+    Universal_1_6,
+    /// Vulkan 1.3 latest revision.
+    Vulkan_1_3,
+    /// Vulkan 1.4 latest revision.
+    Vulkan_1_4,
 }
 
 impl Default for TargetEnv {
@@ -86,12 +92,15 @@ impl std::str::FromStr for TargetEnv {
             "vulkan1.0" => Self::Vulkan_1_0,
             "vulkan1.1" => Self::Vulkan_1_1,
             "vulkan1.2" => Self::Vulkan_1_2,
+            "vulkan1.3" => Self::Vulkan_1_3,
+            "vulkan1.4" => Self::Vulkan_1_4,
             "spv1.0" => Self::Universal_1_0,
             "spv1.1" => Self::Universal_1_1,
             "spv1.2" => Self::Universal_1_2,
             "spv1.3" => Self::Universal_1_3,
             "spv1.4" => Self::Universal_1_4,
             "spv1.5" => Self::Universal_1_5,
+            "spv1.6" => Self::Universal_1_6,
             "opencl1.2embedded" => Self::OpenCLEmbedded_1_2,
             "opencl1.2" => Self::OpenCL_1_2,
             "opencl2.0embedded" => Self::OpenCLEmbedded_2_0,
@@ -118,12 +127,15 @@ impl fmt::Display for TargetEnv {
             Self::Vulkan_1_0 => "vulkan1.0",
             Self::Vulkan_1_1 => "vulkan1.1",
             Self::Vulkan_1_2 => "vulkan1.2",
+            Self::Vulkan_1_3 => "vulkan1.3",
+            Self::Vulkan_1_4 => "vulkan1.4",
             Self::Universal_1_0 => "spv1.0",
             Self::Universal_1_1 => "spv1.1",
             Self::Universal_1_2 => "spv1.2",
             Self::Universal_1_3 => "spv1.3",
             Self::Universal_1_4 => "spv1.4",
             Self::Universal_1_5 => "spv1.5",
+            Self::Universal_1_6 => "spv1.6",
             Self::OpenCLEmbedded_1_2 => "opencl1.2embedded",
             Self::OpenCL_1_2 => "opencl1.2",
             Self::OpenCLEmbedded_2_0 => "opencl2.0embedded",
