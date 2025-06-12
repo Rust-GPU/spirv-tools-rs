@@ -4,18 +4,9 @@ use std::fmt;
 /// often necessary to specify which one applies. `Universal_*` implies an
 /// environment-agnostic SPIR-V.
 ///
-/// When an API method needs to derive a SPIR-V version from a target environment
-/// the method will choose the highest version of SPIR-V supported by the target
-/// environment. Examples:
-///
-/// ```text
-///    SPV_ENV_VULKAN_1_0           ->  SPIR-V 1.0
-///    SPV_ENV_VULKAN_1_1           ->  SPIR-V 1.3
-///    SPV_ENV_VULKAN_1_1_SPIRV_1_4 ->  SPIR-V 1.4
-///    SPV_ENV_VULKAN_1_2           ->  SPIR-V 1.5
-/// ```
-///
-/// Consult the description of API entry points for specific rules.
+/// This enum MUST be kept in sync with the `typedef enum spv_target_env` in
+/// `spirv-tools-sys/spirv-tools/include/spirv-tools/libspirv.h`, it is being
+/// sent across the ffi boundary.
 #[derive(Copy, Clone, Debug, PartialEq)]
 #[repr(C)]
 #[allow(non_camel_case_types, clippy::upper_case_acronyms)]
@@ -58,8 +49,8 @@ pub enum TargetEnv {
     Universal_1_3,
     /// Vulkan 1.1 latest revision.
     Vulkan_1_1,
-    /// Work in progress WebGPU 1.0.
-    WebGPU_0,
+    /// DEPRECATED, may be removed in the future.
+    WebGPU_0_DEPRECATED,
     /// SPIR-V 1.4 latest revision, no other restrictions.
     Universal_1_4,
     /// Vulkan 1.1 with `VK_KHR_spirv_1_4`, i.e. SPIR-V 1.4 binary.
@@ -109,11 +100,12 @@ impl TargetEnv {
 
             TargetEnv::Vulkan_1_0 => (1, 0),
             TargetEnv::Vulkan_1_1 => (1, 3),
-            TargetEnv::WebGPU_0 => (1, 3),
             TargetEnv::Vulkan_1_1_Spirv_1_4 => (1, 4),
             TargetEnv::Vulkan_1_2 => (1, 5),
             TargetEnv::Vulkan_1_3 => (1, 6),
             TargetEnv::Vulkan_1_4 => (1, 6),
+
+            TargetEnv::WebGPU_0_DEPRECATED => (1, 3),
         }
     }
 }
@@ -156,7 +148,7 @@ impl std::str::FromStr for TargetEnv {
             "opengl4.2" => Self::OpenGL_4_2,
             "opengl4.3" => Self::OpenGL_4_3,
             "opengl4.5" => Self::OpenGL_4_5,
-            "webgpu0" => Self::WebGPU_0,
+            "webgpu0_DEPRECATED" => Self::WebGPU_0_DEPRECATED,
             _ => return Err(SpirvResult::InvalidValue),
         })
     }
@@ -191,7 +183,7 @@ impl fmt::Display for TargetEnv {
             Self::OpenGL_4_2 => "opengl4.2",
             Self::OpenGL_4_3 => "opengl4.3",
             Self::OpenGL_4_5 => "opengl4.5",
-            Self::WebGPU_0 => "webgpu0",
+            Self::WebGPU_0_DEPRECATED => "webgpu0_DEPRECATED",
         })
     }
 }
