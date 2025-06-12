@@ -6,8 +6,6 @@ pub struct ToolOptimizer {
     passes: Vec<super::Passes>,
     use_perf_passes: bool,
     use_size_passes: bool,
-    //use_vulkan_to_webgpu: bool,
-    //use_webgpu_to_vulkan: bool,
     legalize_hlsl: bool,
 }
 
