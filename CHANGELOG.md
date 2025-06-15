@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+## [0.12.0] - 2025-06-15
 ### Changed
 - [PR#11](https://github.com/Rust-GPU/spirv-tools-rs/pull/11) add targets `vulkan1.3`, `vulkan1.4` and `spv1.6`
 
@@ -90,7 +91,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added initial implementation, which includes the assembler, validator, and most of the optimizer, which meets the current needs of rust-gpu.
 
 <!-- next-url -->
-[Unreleased]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/0.10.0...HEAD
+[Unreleased]: https://github.com/rust-gpu/spirv-tools-rs/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/0.10.0...v0.12.0
 [0.10.0]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/0.9.0...0.10.0
 [0.9.0]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/0.8.0...0.9.0
 [0.8.0]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/0.7.1...0.8.0
