@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+### Changed
+- [PR#11](https://github.com/Rust-GPU/spirv-tools-rs/pull/11) add targets `vulkan1.3`, `vulkan1.4` and `spv1.6`
+
+## [0.11.0] - 2025-04-22
+- [PR#5](https://github.com/Rust-GPU/spirv-tools-rs/pull/5) update to vulkan-sdk-1.4.309
+
 ## [0.10.0] - 2024-02-05
 ### Changed
 - [PR#38](https://github.com/EmbarkStudios/spirv-tools-rs/pull/38) updated to `vulkan-sdk-1.3.275`.
