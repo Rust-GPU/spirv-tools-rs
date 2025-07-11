@@ -74,6 +74,11 @@ fn val(build: &mut Build) {
 }
 
 fn main() {
+    // skip compiling C++ code when running clippy
+    if cfg!(clippy) {
+        return;
+    }
+
     let use_installed = std::env::var("CARGO_FEATURE_USE_INSTALLED_TOOLS").is_ok();
     let use_compiled = std::env::var("CARGO_FEATURE_USE_COMPILED_TOOLS").is_ok();
 
