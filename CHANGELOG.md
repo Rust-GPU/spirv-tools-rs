@@ -8,8 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+### Added
+- [PR#16](https://github.com/Rust-GPU/spirv-tools-rs/pull/16) Skip compiling C++ code when running clippy, providing a significant speedup.
+
 ## [0.12.0] - 2025-06-15
-### Changed
+### Added
 - [PR#11](https://github.com/Rust-GPU/spirv-tools-rs/pull/11) add targets `vulkan1.3`, `vulkan1.4` and `spv1.6`
 
 ## [0.11.0] - 2025-04-22
