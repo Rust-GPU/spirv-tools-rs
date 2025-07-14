@@ -37,7 +37,7 @@ impl Optimizer for ToolOptimizer {
         cmd.args(
             self.passes
                 .iter()
-                .filter_map(|p| pass_to_string(*p).map(|s| format!("--{}", s))),
+                .filter_map(|p| pass_to_string(*p).map(|s| format!("--{s}"))),
         );
 
         if self.use_perf_passes {
@@ -54,7 +54,7 @@ impl Optimizer for ToolOptimizer {
 
         if let Some(opts) = options {
             if let Some(max_id_bound) = opts.max_id_bound {
-                cmd.arg(format!("--max-id-bound={}", max_id_bound));
+                cmd.arg(format!("--max-id-bound={max_id_bound}"));
             }
 
             if opts.preserve_bindings {

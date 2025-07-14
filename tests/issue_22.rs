@@ -34,7 +34,7 @@ fn issue() {
         .optimize(
             &assembled,
             &mut |msg| {
-                eprintln!("[tool] optimizer message: {:#?}", msg);
+                eprintln!("[tool] optimizer message: {msg:#?}");
             },
             None,
         )
@@ -44,7 +44,7 @@ fn issue() {
         .optimize(
             &assembled,
             &mut |msg| {
-                eprintln!("[compiled] optimizer message: {:#?}", msg);
+                eprintln!("[compiled] optimizer message: {msg:#?}");
             },
             None,
         )

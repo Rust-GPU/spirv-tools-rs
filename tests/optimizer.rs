@@ -25,7 +25,7 @@ fn compiled_matches_binary() {
         .optimize(
             &assembled,
             &mut |msg| {
-                eprintln!("[tool] optimizer message: {:#?}", msg);
+                eprintln!("[tool] optimizer message: {msg:#?}");
             },
             None,
         )
@@ -35,7 +35,7 @@ fn compiled_matches_binary() {
         .optimize(
             &assembled,
             &mut |msg| {
-                eprintln!("[compiled] optimizer message: {:#?}", msg);
+                eprintln!("[compiled] optimizer message: {msg:#?}");
             },
             None,
         )
