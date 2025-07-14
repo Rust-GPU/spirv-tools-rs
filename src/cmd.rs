@@ -179,7 +179,10 @@ pub fn exec(
                     return None;
                 }
                 let (ret, remaining) = match memchr::memchr(self.needle, self.haystack) {
-                    Some(pos) => (&self.haystack[..pos], &self.haystack[pos + 1..]),
+                    Some(pos) => (
+                        self.haystack.get(..pos).unwrap(),
+                        self.haystack.get(pos + 1..).unwrap(),
+                    ),
                     None => (self.haystack, &[][..]),
                 };
                 self.haystack = remaining;

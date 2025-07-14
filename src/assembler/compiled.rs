@@ -92,7 +92,7 @@ impl Assembler for CompiledAssembler {
                     .map_err(|e| crate::error::Error {
                         inner: shared::SpirvResult::InvalidText,
                         diagnostic: Some(
-                            format!("spirv disassemble returned non-utf8 text: {}", e).into(),
+                            format!("spirv disassemble returned non-utf8 text: {e}").into(),
                         ),
                     });
 
