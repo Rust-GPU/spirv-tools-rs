@@ -1,6 +1,6 @@
 [graph]
 all-features = true
-exclude = ["package", "install", "generate"]
+exclude = ["generate"]
 
 [licenses]
 allow = [
