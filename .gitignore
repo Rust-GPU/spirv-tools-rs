@@ -1,7 +1,6 @@
 /target
 spirv-tools-sys/target
 **/*.rs.bk
-Cargo.lock
 tools/bin
 tools/*.zst
 .idea
