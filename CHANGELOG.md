@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+## [0.12.1] - 2025-07-17
 ### Added
 - [PR#16](https://github.com/Rust-GPU/spirv-tools-rs/pull/16) Skip compiling C++ code when running clippy, providing a significant speedup.
 
@@ -94,7 +95,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added initial implementation, which includes the assembler, validator, and most of the optimizer, which meets the current needs of rust-gpu.
 
 <!-- next-url -->
-[Unreleased]: https://github.com/rust-gpu/spirv-tools-rs/compare/v0.12.0...HEAD
+[Unreleased]: https://github.com/rust-gpu/spirv-tools-rs/compare/v0.12.1...HEAD
+[0.12.1]: https://github.com/rust-gpu/spirv-tools-rs/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/0.10.0...v0.12.0
 [0.10.0]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/0.9.0...0.10.0
 [0.9.0]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/0.8.0...0.9.0
