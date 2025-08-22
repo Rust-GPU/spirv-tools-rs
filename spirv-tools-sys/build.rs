@@ -129,6 +129,8 @@ fn main() {
             .flag("-Wextra")
             .flag("-Wnon-virtual-dtor")
             .flag("-Wno-missing-field-initializers")
+            .flag("-Wno-stringop-overflow")
+            .flag("-Wno-array-bounds")
             .flag("-Werror")
             .flag("-std=c++17")
             .flag("-fno-exceptions")
