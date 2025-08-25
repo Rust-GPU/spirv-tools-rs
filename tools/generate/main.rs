@@ -60,7 +60,7 @@ const HEADERS: &str = "spirv-headers/include/spirv";
 
 fn enum_string_mapping(version: &str) {
     python(&[
-        "spirv-tools/utils/generate_grammar_tables.py".to_owned(),
+        "spirv-tools/utils/ggt.py".to_owned(),
         format!("--spirv-core-grammar={HEADERS}/{version}/spirv.core.grammar.json"),
         format!("--extinst-debuginfo-grammar={HEADERS}/unified1/extinst.debuginfo.grammar.json"),
         format!("--extinst-cldebuginfo100-grammar={HEADERS}/unified1/extinst.opencl.debuginfo.100.grammar.json"),
@@ -72,7 +72,7 @@ fn enum_string_mapping(version: &str) {
 
 fn vendor_table(which: &str, prefix: Option<&str>) {
     python(&[
-        "spirv-tools/utils/generate_grammar_tables.py".to_owned(),
+        "spirv-tools/utils/ggt.py".to_owned(),
         format!("--extinst-vendor-grammar={HEADERS}/unified1/extinst.{which}.grammar.json",),
         format!("--vendor-insts-output=generated/{which}.insts.inc"),
         format!(
@@ -85,7 +85,7 @@ fn vendor_table(which: &str, prefix: Option<&str>) {
 
 // fn vendor_table_local(which: &str, prefix: Option<&str>) {
 //     python(&[
-//         "spirv-tools/utils/generate_grammar_tables.py".to_owned(),
+//         "spirv-tools/utils/ggt.py".to_owned(),
 //         format!(
 //             "--extinst-vendor-grammar=spirv-tools/source/extinst.{}.grammar.json",
 //             which
@@ -101,7 +101,7 @@ fn vendor_table(which: &str, prefix: Option<&str>) {
 
 fn core_table(which: &str) {
     python(&[
-        "spirv-tools/utils/generate_grammar_tables.py".to_owned(),
+        "spirv-tools/utils/ggt.py".to_owned(),
         format!("--spirv-core-grammar={HEADERS}/unified1/spirv.core.grammar.json"),
         format!("--core-insts-output=generated/core.insts-{which}.inc"),
         format!("--extinst-debuginfo-grammar={HEADERS}/unified1/extinst.debuginfo.grammar.json"),
@@ -122,7 +122,7 @@ fn registry_table() {
 
 fn glsl_table(version: &str) {
     python(&[
-        "spirv-tools/utils/generate_grammar_tables.py".to_owned(),
+        "spirv-tools/utils/ggt.py".to_owned(),
         format!("--spirv-core-grammar={HEADERS}/{version}/spirv.core.grammar.json"),
         format!("--extinst-debuginfo-grammar={HEADERS}/unified1/extinst.debuginfo.grammar.json"),
         format!("--extinst-cldebuginfo100-grammar={HEADERS}/unified1/extinst.opencl.debuginfo.100.grammar.json"),
@@ -134,7 +134,7 @@ fn glsl_table(version: &str) {
 
 fn opencl_table(version: &str) {
     python(&[
-        "spirv-tools/utils/generate_grammar_tables.py".to_owned(),
+        "spirv-tools/utils/ggt.py".to_owned(),
         format!("--spirv-core-grammar={HEADERS}/{version}/spirv.core.grammar.json"),
         format!("--extinst-debuginfo-grammar={HEADERS}/unified1/extinst.debuginfo.grammar.json"),
         format!("--extinst-cldebuginfo100-grammar={HEADERS}/unified1/extinst.opencl.debuginfo.100.grammar.json"),
