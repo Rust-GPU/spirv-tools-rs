@@ -134,7 +134,7 @@ dependencies = [
 
 [[package]]
 name = "spirv-tools-sys"
-version = "0.12.1"
+version = "0.12.2"
 dependencies = [
  "cc",
 ]
