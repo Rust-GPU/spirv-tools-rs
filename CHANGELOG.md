@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+- [PR#18](https://github.com/Rust-GPU/spirv-tools-rs/pull/18) disable `array-bounds` and `stringop-overflow` warnings on gnu compilers
+
 ## [0.12.1] - 2025-07-17
 ### Added
 - [PR#16](https://github.com/Rust-GPU/spirv-tools-rs/pull/16) Skip compiling C++ code when running clippy, providing a significant speedup.
