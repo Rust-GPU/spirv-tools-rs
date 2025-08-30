@@ -58,8 +58,6 @@ pub enum TargetEnv {
     Universal_1_3,
     /// Vulkan 1.1 latest revision.
     Vulkan_1_1,
-    /// Work in progress WebGPU 1.0.
-    WebGPU_0,
     /// SPIR-V 1.4 latest revision, no other restrictions.
     Universal_1_4,
     /// Vulkan 1.1 with `VK_KHR_spirv_1_4`, i.e. SPIR-V 1.4 binary.
@@ -109,7 +107,6 @@ impl TargetEnv {
 
             TargetEnv::Vulkan_1_0 => (1, 0),
             TargetEnv::Vulkan_1_1 => (1, 3),
-            TargetEnv::WebGPU_0 => (1, 3),
             TargetEnv::Vulkan_1_1_Spirv_1_4 => (1, 4),
             TargetEnv::Vulkan_1_2 => (1, 5),
             TargetEnv::Vulkan_1_3 => (1, 6),
@@ -156,7 +153,6 @@ impl std::str::FromStr for TargetEnv {
             "opengl4.2" => Self::OpenGL_4_2,
             "opengl4.3" => Self::OpenGL_4_3,
             "opengl4.5" => Self::OpenGL_4_5,
-            "webgpu0" => Self::WebGPU_0,
             _ => return Err(SpirvResult::InvalidValue),
         })
     }
@@ -191,7 +187,6 @@ impl fmt::Display for TargetEnv {
             Self::OpenGL_4_2 => "opengl4.2",
             Self::OpenGL_4_3 => "opengl4.3",
             Self::OpenGL_4_5 => "opengl4.5",
-            Self::WebGPU_0 => "webgpu0",
         })
     }
 }

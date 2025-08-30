@@ -162,24 +162,6 @@ impl Optimizer for CompiledOptimizer {
         self
     }
 
-    // /// Registers passes that have been prescribed for converting from Vulkan to
-    // /// WebGPU. This sequence of passes is subject to constant review and will
-    // /// change from time to time.
-    // #[inline]
-    // pub fn register_vulkan_to_webgpu_passes(&mut self) -> &mut Self {
-    //     unsafe { opt::optimizer_register_vulkan_to_webgpu_passes(self.inner) }
-    //     self
-    // }
-
-    // /// Registers passes that have been prescribed for converting from WebGPU to
-    // /// Vulkan. This sequence of passes is subject to constant review and will
-    // /// change from time to time.
-    // #[inline]
-    // pub fn register_webgpu_to_vulkan_passes(&mut self) -> &mut Self {
-    //     unsafe { opt::optimizer_register_webgpu_to_vulkan_passes(self.inner) }
-    //     self
-    // }
-
     /// Registers passes that attempt to legalize the generated code.
     ///
     /// Note: this recipe is specially designed for legalizing SPIR-V. It should be
