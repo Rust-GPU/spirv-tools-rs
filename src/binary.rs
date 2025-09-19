@@ -68,7 +68,7 @@ impl TryFrom<Vec<u8>> for Binary {
 
     #[inline]
     fn try_from(v: Vec<u8>) -> Result<Self, Self::Error> {
-        if v.len() % size_of::<u32>() != 0 {
+        if !v.len().is_multiple_of(size_of::<u32>()) {
             Err(crate::Error {
                 inner: spirv_tools_sys::shared::SpirvResult::InvalidBinary,
                 diagnostic: None,
@@ -132,13 +132,13 @@ pub fn from_binary(bin: &[u32]) -> &[u8] {
 /// Fails if the input is not `input.as_ptr() % 4` and `input.len() % 4`.
 #[inline]
 pub fn to_binary(bytes: &[u8]) -> Result<&[u32], crate::Error> {
-    if bytes.len() % size_of::<u32>() != 0 {
+    if !bytes.len().is_multiple_of(size_of::<u32>()) {
         return Err(crate::Error {
             inner: spirv_tools_sys::shared::SpirvResult::InvalidBinary,
             diagnostic: None,
         });
     }
-    if bytes.as_ptr().addr() % size_of::<u32>() != 0 {
+    if !bytes.as_ptr().addr().is_multiple_of(size_of::<u32>()) {
         return Err(crate::Error {
             inner: spirv_tools_sys::shared::SpirvResult::InvalidBinary,
             diagnostic: None,
