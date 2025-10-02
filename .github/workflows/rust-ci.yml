@@ -62,7 +62,6 @@ jobs:
       - name: cargo test
         run: cargo test --release --all-features
 
-  # Remove this check if you don't use cargo-deny in the repo
   deny-check:
     name: cargo-deny
     runs-on: ubuntu-22.04
@@ -72,7 +71,6 @@ jobs:
           submodules: true
       - uses: EmbarkStudios/cargo-deny-action@v2
 
-  # Remove this check if you don't publish the crate(s) from this repo
   publish-check:
     name: Publish Check
     runs-on: ubuntu-22.04
@@ -80,11 +78,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-      - run: cargo fetch
-      - name: cargo publish check
-        run: cargo publish --dry-run --manifest-path spirv-tools-sys/Cargo.toml
-      - name: cargo publish check
-        run: cargo publish --dry-run --manifest-path Cargo.toml
+      - uses: cargo-bins/cargo-binstall@main
+      - run: cargo binstall cargo-release
+      - run: cargo fetch --locked
+      - name: cargo release --workspace
+        run: cargo release patch --allow-branch=*
+      # cargo release in workspace root doesn't actually run `publish check` on any crate, do so manually
+      - name: cargo publish check spirv-tools-sys
+        run: cargo release patch --allow-branch=* --manifest-path spirv-tools-sys/Cargo.toml
+      - name: cargo publish check spirv-tools
+        run: cargo release patch --allow-branch=* --manifest-path spirv-tools/Cargo.toml
 
 defaults:
   run:
