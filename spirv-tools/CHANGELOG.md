@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+- [PR#19](https://github.com/Rust-GPU/spirv-tools-rs/pull/19) update to vulkan-sdk-1.4.321
+- [PR#20](https://github.com/Rust-GPU/spirv-tools-rs/pull/20) upgrade to edition 2024, remove webgpu target
+
 ## [0.12.2] - 2025-08-28
 - [PR#18](https://github.com/Rust-GPU/spirv-tools-rs/pull/18) disable `array-bounds` and `stringop-overflow` warnings on gnu compilers
 
