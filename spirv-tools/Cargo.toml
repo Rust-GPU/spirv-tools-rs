@@ -1,0 +1,43 @@
+[package]
+name = "spirv-tools"
+description.workspace = true
+repository.workspace = true
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+documentation.workspace = true
+readme = "./README.md"
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[features]
+default = ["use-compiled-tools"]
+use-installed-tools = [
+    "spirv-tools-sys/use-installed-tools",
+    "memchr",
+    "tempfile",
+]
+use-compiled-tools = ["spirv-tools-sys/use-compiled-tools"]
+
+[dependencies]
+spirv-tools-sys = { workspace = true, default-features = false }
+# Used for parsing output when running binaries
+memchr = { version = "2.3", optional = true }
+tempfile = { version = "3.1", optional = true }
+
+[dev-dependencies]
+similar = "2.0"
+
+[[test]]
+name = "optimizer"
+required-features = ["use-compiled-tools", "use-installed-tools"]
+
+[[test]]
+name = "assembler"
+required-features = ["use-compiled-tools", "use-installed-tools"]
+
+[[test]]
+name = "issue_22"
+required-features = ["use-compiled-tools", "use-installed-tools"]

@@ -2,7 +2,7 @@
 
 # `🛠 spirv-tools`
 
-**Unofficial wrapper for [SPIR-V Tools], primarily for the [rust-gpu] project**
+This crate is an unofficial wrapper for [SPIR-V Tools], its primary use case is for the [rust-gpu] project.
 
 [![Crates.io](https://img.shields.io/crates/v/spirv-tools.svg)](https://crates.io/crates/spirv-tools)
 [![Docs](https://docs.rs/spirv-tools/badge.svg)](https://docs.rs/spirv-tools)
@@ -16,8 +16,7 @@ This is a very rough wrapper around the assembler, validator, and (most of the) 
 
 ## Contributing
 
-[![Contributor
-Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4-ff69b4.svg)](CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/contributor%20covenant-v1.4-ff69b4.svg)](../CODE_OF_CONDUCT.md)
 
 We welcome community contributions to this project.
 
