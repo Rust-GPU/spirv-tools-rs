@@ -8,9 +8,9 @@ use std::{fs, process::Command};
 
 fn python<S: AsRef<std::ffi::OsStr>>(args: impl IntoIterator<Item = S>) -> Result<(), i32> {
     Command::new("python")
-        .args(args.into_iter())
+        .args(args)
         .status()
-        .map_err(|_| -1)
+        .map_err(|_e| -1)
         .and_then(|es| {
             if es.success() {
                 Ok(())
@@ -22,10 +22,10 @@ fn python<S: AsRef<std::ffi::OsStr>>(args: impl IntoIterator<Item = S>) -> Resul
 
 fn main() {
     let sys_root = PathBuf::from_iter([env!("CARGO_MANIFEST_DIR"), "..", "..", "spirv-tools-sys"]);
-    fs::create_dir_all(&sys_root.join("generated")).expect("unable to create 'generated'");
+    fs::create_dir_all(sys_root.join("generated")).expect("unable to create 'generated'");
     std::env::set_current_dir(&sys_root).unwrap();
 
-    python(&[
+    python([
         "spirv-tools/utils/update_build_version.py",
         "spirv-tools/CHANGES",
         "generated/build-version.inc",
@@ -66,7 +66,7 @@ fn grammar_tables() {
 }
 
 fn registry_table() {
-    python(&[
+    python([
         "spirv-tools/utils/generate_registry_tables.py",
         "--xml=spirv-headers/include/spirv/spir-v.xml",
         "--generator=generated/generators.inc",
@@ -80,5 +80,5 @@ fn generate_header(header_name: &str, grammar: &str) {
         format!("--extinst-grammar={GRAMMAR_DIR}/extinst.{grammar}.grammar.json",),
         format!("--extinst-output-path=generated/{}.h", header_name),
     ])
-    .expect("failed to generate C header")
+    .expect("failed to generate C header");
 }

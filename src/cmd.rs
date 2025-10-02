@@ -203,11 +203,11 @@ pub fn exec(
     let mut messages = Vec::new();
 
     for line in split(&output.stdout, b'\n') {
-        if let Ok(s) = std::str::from_utf8(line) {
-            if let Some(msg) = crate::error::Message::parse(s) {
-                messages.push(msg);
-                continue;
-            }
+        if let Ok(s) = std::str::from_utf8(line)
+            && let Some(msg) = crate::error::Message::parse(s)
+        {
+            messages.push(msg);
+            continue;
         }
 
         break;
