@@ -271,7 +271,7 @@ pub struct ToolContext {
     _unused: [u8; 0],
 }
 
-extern "C" {
+unsafe extern "C" {
     /// Creates a context object for most of the SPIRV-Tools API.
     /// Returns null if env is invalid.
     ///

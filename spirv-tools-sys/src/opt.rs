@@ -491,7 +491,7 @@ pub enum Passes {
     WrapOpKill,
 }
 
-extern "C" {
+unsafe extern "C" {
     pub fn optimizer_create(env: crate::shared::TargetEnv) -> *mut Optimizer;
     pub fn optimizer_destroy(opt: *mut Optimizer);
 

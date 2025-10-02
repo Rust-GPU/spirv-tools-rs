@@ -52,23 +52,25 @@ impl Diagnostic {
     pub(crate) unsafe fn from_diag(
         diag: *mut diagnostics::Diagnostic,
     ) -> Result<Self, shared::SpirvResult> {
-        if diag.is_null() {
-            return Err(shared::SpirvResult::Success);
+        unsafe {
+            if diag.is_null() {
+                return Err(shared::SpirvResult::Success);
+            }
+
+            let (message, notes) = Message::message_and_notes_from_cstr((*diag).error);
+
+            let res = Self {
+                line: (*diag).position.line,
+                column: (*diag).position.column,
+                index: (*diag).position.index,
+                message,
+                notes,
+                is_text: (*diag).is_text_source,
+            };
+
+            diagnostics::diagnostic_destroy(diag);
+            Ok(res)
         }
-
-        let (message, notes) = Message::message_and_notes_from_cstr((*diag).error);
-
-        let res = Self {
-            line: (*diag).position.line,
-            column: (*diag).position.column,
-            index: (*diag).position.index,
-            message,
-            notes,
-            is_text: (*diag).is_text_source,
-        };
-
-        diagnostics::diagnostic_destroy(diag);
-        Ok(res)
     }
 }
 
@@ -126,15 +128,17 @@ impl Message {
 
     #[cfg(feature = "use-compiled-tools")]
     unsafe fn message_and_notes_from_cstr(msg: *const std::os::raw::c_char) -> (String, String) {
-        let full_message = std::ffi::CStr::from_ptr(msg).to_string_lossy();
+        unsafe {
+            let full_message = std::ffi::CStr::from_ptr(msg).to_string_lossy();
 
-        if let Some(ind) = full_message.find('\n') {
-            (
-                full_message[..ind].to_owned(),
-                full_message[ind + 1..].to_owned(),
-            )
-        } else {
-            (full_message.into_owned(), String::new())
+            if let Some(ind) = full_message.find('\n') {
+                (
+                    full_message[..ind].to_owned(),
+                    full_message[ind + 1..].to_owned(),
+                )
+            } else {
+                (full_message.into_owned(), String::new())
+            }
         }
     }
 

@@ -19,7 +19,7 @@ pub enum ValidatorLimits {
     IdBound,
 }
 
-extern "C" {
+unsafe extern "C" {
     /// Validates a SPIR-V binary for correctness. Any errors will be written into
     /// *diagnostic if diagnostic is non-null, otherwise the context's message
     /// consumer will be used.

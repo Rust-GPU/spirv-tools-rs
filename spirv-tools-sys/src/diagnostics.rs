@@ -42,7 +42,7 @@ pub type MessageCallback = extern "C" fn(
     *mut std::ffi::c_void,       // context we use for mapping
 );
 
-extern "C" {
+unsafe extern "C" {
     /// Destroys a diagnostic object.  This is a no-op if diagnostic is a null
     /// pointer.
     #[link_name = "spvDiagnosticDestroy"]
