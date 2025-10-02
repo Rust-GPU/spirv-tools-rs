@@ -1,5 +1,10 @@
-pre-release-commit-message = "Release"
+# You should just need to run this to do a release of both crates:
+# $ cargo release <minor|patch>
+
+pre-release-commit-message = "Release {{version}}"
 tag-message = "Release `{{crate_name}}` {{version}}"
+allow-branch = ["main"]
+shared-version = true
 pre-release-replacements = [
   { file = "CHANGELOG.md", search = "Unreleased", replace = "{{version}}" },
   { file = "CHANGELOG.md", search = "\\.\\.\\.HEAD", replace = "...{{tag_name}}" },
