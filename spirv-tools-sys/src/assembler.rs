@@ -31,7 +31,7 @@ pub enum DisassembleOptions {
     Comment = 0x80,
 }
 
-extern "C" {
+unsafe extern "C" {
     /// Encodes the given SPIR-V assembly text to its binary representation. The
     /// length parameter specifies the number of bytes for text. Encoded binary will
     /// be stored into *binary. Any error will be written into *diagnostic if
