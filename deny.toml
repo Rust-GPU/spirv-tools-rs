@@ -1,6 +1,6 @@
 [graph]
 all-features = true
-exclude = ["generate"]
+exclude = ["generate", "assembler"]
 
 [licenses]
 allow = [
