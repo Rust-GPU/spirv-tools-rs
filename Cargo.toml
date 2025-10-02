@@ -20,5 +20,5 @@ keywords = ["spir-v", "rust-gpu"]
 categories = ["rendering::data-formats"]
 
 [workspace.dependencies]
-spirv-tools = { path = "spirv-tools", default-features = false }
-spirv-tools-sys = { path = "spirv-tools-sys", default-features = false }
+spirv-tools = { path = "spirv-tools", version = "0.12.2", default-features = false }
+spirv-tools-sys = { path = "spirv-tools-sys", version = "0.12.2", default-features = false }
