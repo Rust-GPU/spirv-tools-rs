@@ -8,12 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+## [0.13.0] - 2025-10-07
 ## [0.12.2] - 2025-08-28
 ## [0.12.1] - 2025-07-17
 ## [0.12.0] - 2025-06-15
 
 <!-- next-url -->
-[Unreleased]: https://github.com/rust-gpu/spirv-tools-rs/compare/spirv-tools-sys-v0.12.2...HEAD
+[Unreleased]: https://github.com/rust-gpu/spirv-tools-rs/compare/spirv-tools-sys-v0.13.0...HEAD
+[0.13.0]: https://github.com/rust-gpu/spirv-tools-rs/compare/spirv-tools-sys-v0.12.2...spirv-tools-sys-v0.13.0
 [0.12.2]: https://github.com/rust-gpu/spirv-tools-rs/compare/spirv-tools-sys-v0.12.1...spirv-tools-sys-v0.12.2
 [0.12.1]: https://github.com/rust-gpu/spirv-tools-rs/compare/spirv-tools-sys-v0.12.0...spirv-tools-sys-v0.12.1
 [0.12.0]: https://github.com/EmbarkStudios/spirv-tools-rs/compare/spirv-tools-sys-v0.8.0...spirv-tools-sys-v0.12.0
