@@ -164,6 +164,7 @@ fn main() {
         build.flag("/std:c++17");
     }
 
+    build.opt_level(2);
     build.cpp(true);
     build.compile("spirv-tools");
 
