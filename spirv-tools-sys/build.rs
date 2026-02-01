@@ -75,7 +75,7 @@ fn val(build: &mut Build) {
 
 fn main() {
     // skip compiling C++ code when running clippy
-    if cfg!(clippy) {
+    if std::env::var("CLIPPY_ARGS").is_ok() {
         return;
     }
 
