@@ -7,7 +7,7 @@ use std::fmt;
 /// This enum MUST be kept in sync with the `typedef enum spv_target_env` in
 /// `spirv-tools-sys/spirv-tools/include/spirv-tools/libspirv.h`, it is being
 /// sent across the ffi boundary.
-#[derive(Copy, Clone, Debug, PartialEq)]
+#[derive(Copy, Clone, Debug, Default, PartialEq)]
 #[repr(C)]
 #[allow(non_camel_case_types, clippy::upper_case_acronyms)]
 pub enum TargetEnv {
@@ -56,6 +56,7 @@ pub enum TargetEnv {
     /// Vulkan 1.1 with `VK_KHR_spirv_1_4`, i.e. SPIR-V 1.4 binary.
     Vulkan_1_1_Spirv_1_4,
     /// SPIR-V 1.5 latest revision, no other restrictions.
+    #[default] // This is the default target environment for (AFAICT) all spirv-tools
     Universal_1_5,
     /// Vulkan 1.2 latest revision.
     Vulkan_1_2,
@@ -107,13 +108,6 @@ impl TargetEnv {
 
             TargetEnv::WebGPU_0_DEPRECATED => (1, 3),
         }
-    }
-}
-
-impl Default for TargetEnv {
-    fn default() -> Self {
-        // This is the default target environment for (AFAICT) all spirv-tools
-        Self::Universal_1_5
     }
 }
 
