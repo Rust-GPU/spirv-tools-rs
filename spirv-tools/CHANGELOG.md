@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+- [PR#24](https://github.com/Rust-GPU/spirv-tools-rs/pull/24) always compile C++ with `-O2`, even in debug
+- [PR#23](https://github.com/Rust-GPU/spirv-tools-rs/pull/23) fix clippy skipping C++ compile when crate is a crates.io dependency
+
 ## [0.13.0] - 2025-10-07
 - [PR#19](https://github.com/Rust-GPU/spirv-tools-rs/pull/19) update to vulkan-sdk-1.4.321
 - [PR#20](https://github.com/Rust-GPU/spirv-tools-rs/pull/20) upgrade to edition 2024, remove webgpu target
