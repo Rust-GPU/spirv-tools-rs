@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- next-header -->
 ## [Unreleased] - ReleaseDate
+- [PR#26](https://github.com/Rust-GPU/spirv-tools-rs/pull/26) never skip C++ compile on clippy, [caused issues downstream](https://github.com/Rust-GPU/cargo-gpu/issues/140)
+
 ## [0.13.1] - 2026-02-12
 - [PR#24](https://github.com/Rust-GPU/spirv-tools-rs/pull/24) always compile C++ with `-O2`, even in debug
 - [PR#23](https://github.com/Rust-GPU/spirv-tools-rs/pull/23) fix clippy skipping C++ compile when crate is a crates.io dependency
