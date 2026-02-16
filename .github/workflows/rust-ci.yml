@@ -89,6 +89,22 @@ jobs:
       - name: cargo publish check spirv-tools
         run: cargo release patch --allow-branch=* --manifest-path spirv-tools/Cargo.toml
 
+  # This allows us to have a single job we can branch protect on, rather than needing
+  # to update the branch protection rules when the test matrix changes
+  test_success:
+    runs-on: ubuntu-24.04
+    needs: [lint, test, deny-check, publish-check]
+    # Hack for buggy GitHub Actions behavior with skipped checks: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks#handling-skipped-but-required-checks
+    if: ${{ always() }}
+    steps:
+      # Another hack is to actually check the status of the dependencies or else it'll fall through
+      - run: |
+          echo "Checking statuses..."
+          [[ "${{ needs.lint.result }}" == "success" ]] || exit 1
+          [[ "${{ needs.test.result }}" == "success" ]] || exit 1
+          [[ "${{ needs.deny-check.result }}" == "success" ]] || exit 1
+          [[ "${{ needs.publish-check.result }}" == "success" ]] || exit 1
+
 defaults:
   run:
     shell: bash
