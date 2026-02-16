@@ -10,7 +10,7 @@ resolver = "2"
 [workspace.package]
 description = "Wrapper crate for SPIRV-Tools"
 repository = "https://github.com/rust-gpu/spirv-tools-rs"
-version = "0.13.1"
+version = "0.13.2"
 authors = ["rust-gpu developers", "Embark <opensource@embark-studios.com>"]
 edition = "2024"
 license = "MIT OR Apache-2.0"
@@ -20,5 +20,5 @@ keywords = ["spir-v", "rust-gpu"]
 categories = ["rendering::data-formats"]
 
 [workspace.dependencies]
-spirv-tools = { path = "spirv-tools", version = "0.13.1", default-features = false }
-spirv-tools-sys = { path = "spirv-tools-sys", version = "0.13.1", default-features = false }
+spirv-tools = { path = "spirv-tools", version = "0.13.2", default-features = false }
+spirv-tools-sys = { path = "spirv-tools-sys", version = "0.13.2", default-features = false }
