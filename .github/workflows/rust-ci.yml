@@ -40,12 +40,17 @@ jobs:
       matrix:
         os: [ ubuntu-latest, macOS-latest ]
         cxx: [ g++, clang++ ]
+        cxxflags: [ '-Werror' ]
         include:
-          - os: windows-2022
+          - os: windows-latest
             target: x86_64-pc-windows-msvc
+            # msvc's `-Werror` is `/WX`
+            cxxflags: '/WX'
     runs-on: ${{ matrix.os }}
     env:
       CXX: ${{ matrix.cxx }}
+      # error on compiler warnings in CI
+      CXXFLAGS: ${{ matrix.cxxflags }}
     steps:
       - uses: actions/checkout@v4
         with:
