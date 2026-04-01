@@ -36,9 +36,16 @@ jobs:
   test:
     name: Test
     strategy:
+      fail-fast: false
       matrix:
-        os: [ ubuntu-24.04, windows-2022, macOS-latest ]
+        os: [ ubuntu-latest, macOS-latest ]
+        cxx: [ g++, clang++ ]
+        include:
+          - os: windows-2022
+            target: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
+    env:
+      CXX: ${{ matrix.cxx }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,6 +59,9 @@ jobs:
       # figure out native target triple while we're at it
       - name: install rust-toolchain
         run: echo "TARGET=$(rustc --print host-tuple)" >> "$GITHUB_ENV"
+      - name: overwrite target
+        if: ${{ matrix.target != '' }}
+        run: echo "TARGET=${{ matrix.target }}" >> "$GITHUB_ENV"
       # Fetch dependencies in a separate step to clearly show how long each part
       # of the testing takes
       - name: cargo fetch --locked
