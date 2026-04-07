@@ -1,12 +1,9 @@
-<!-- markdownlint-disable blanks-around-headings blanks-around-lists no-duplicate-heading -->
-
 # Changelog
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-<!-- next-header -->
 ## [Unreleased] - ReleaseDate
 ## [0.13.2] - 2026-02-16
 - [PR#26](https://github.com/Rust-GPU/spirv-tools-rs/pull/26) never skip C++ compile on clippy, [caused issues downstream](https://github.com/Rust-GPU/cargo-gpu/issues/140)
@@ -108,7 +105,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added initial implementation, which includes the assembler, validator, and most of the optimizer, which meets the current needs of rust-gpu.
 
-<!-- next-url -->
 [Unreleased]: https://github.com/rust-gpu/spirv-tools-rs/compare/spirv-tools-v0.13.2...HEAD
 [0.13.2]: https://github.com/rust-gpu/spirv-tools-rs/compare/spirv-tools-v0.13.1...spirv-tools-v0.13.2
 [0.13.1]: https://github.com/rust-gpu/spirv-tools-rs/compare/spirv-tools-v0.13.0...spirv-tools-v0.13.1
