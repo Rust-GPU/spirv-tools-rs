@@ -103,8 +103,6 @@ jobs:
       - uses: cargo-bins/cargo-binstall@main
       - run: cargo binstall cargo-release
       - run: cargo fetch --locked
-      - name: cargo release --workspace
-        run: cargo release patch --allow-branch=*
       # cargo release in workspace root doesn't actually run `publish check` on any crate, do so manually
       - name: cargo publish check spirv-tools-sys
         run: cargo release patch --allow-branch=* --manifest-path spirv-tools-sys/Cargo.toml
