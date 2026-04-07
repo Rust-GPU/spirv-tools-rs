@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - ReleaseDate
+## [0.13.3](https://github.com/Rust-GPU/spirv-tools-rs/compare/spirv-tools-sys-v0.13.2...spirv-tools-sys-v0.13.3) - 2026-04-07
 ## [0.13.2] - 2026-02-16
 ## [0.13.1] - 2026-02-12
 ## [0.13.0] - 2025-10-07
