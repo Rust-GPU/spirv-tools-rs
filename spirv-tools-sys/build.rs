@@ -87,6 +87,8 @@ fn main() {
     }
 
     let mut build = Build::new();
+    build.cpp(true);
+    build.opt_level(2);
 
     add_includes(&mut build, "spirv-tools", &["", "include"]);
     add_includes(&mut build, "generated", &[""]);
@@ -157,8 +159,6 @@ fn main() {
         build.flag("/std:c++17");
     }
 
-    build.opt_level(2);
-    build.cpp(true);
     build.compile("spirv-tools");
 
     println!("cargo:rerun-if-changed=spirv-tools");
