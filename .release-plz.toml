@@ -1,3 +1,8 @@
+[workspace]
+# The folder `./spirv-tools-sys/spirv-tools/build_overrides` in the spirv-tools submodule is `.gitignore`-ed by the
+# pattern `/build*/`, even though it contains commited files, which release-plz is complaining about.
+allow_dirty = true
+
 [changelog]
 body = """
 ## [{{ version }}]{%- if release_link -%}({{ release_link }}){% endif %} - {{ timestamp | date(format="%Y-%m-%d") }}\n
