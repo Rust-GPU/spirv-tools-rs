@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - setup-release-plz
 
 jobs:
 
