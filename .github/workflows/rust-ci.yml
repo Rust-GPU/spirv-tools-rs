@@ -93,29 +93,24 @@ jobs:
           submodules: true
       - uses: EmbarkStudios/cargo-deny-action@v2
 
-  release-plz-dry-run:
-    name: Release-plz dry-run
+  release-dry-run:
+    name: Release dry-run
     runs-on: ubuntu-latest
-    permissions: {}
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-          persist-credentials: false
           submodules: true
-      - name: Run release-plz
-        uses: release-plz/action@v0.5
-        with:
-          dry_run: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: install rust-toolchain
+        run: echo "TARGET=$(rustc --print host-tuple)" >> "$GITHUB_ENV"
+      - name: cargo fetch --locked
+        run: cargo fetch --locked --target $TARGET
+      - run: cargo publish --dry-run
 
   # This allows us to have a single job we can branch protect on, rather than needing
   # to update the branch protection rules when the test matrix changes
   test_success:
     runs-on: ubuntu-24.04
-    needs: [lint, test, deny-check, release-plz-dry-run]
+    needs: [lint, test, deny-check, release-dry-run]
     # Hack for buggy GitHub Actions behavior with skipped checks: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks#handling-skipped-but-required-checks
     if: ${{ always() }}
     steps:
@@ -125,7 +120,7 @@ jobs:
           [[ "${{ needs.lint.result }}" == "success" ]] || exit 1
           [[ "${{ needs.test.result }}" == "success" ]] || exit 1
           [[ "${{ needs.deny-check.result }}" == "success" ]] || exit 1
-          [[ "${{ needs.release-plz-dry-run.result }}" == "success" ]] || exit 1
+          [[ "${{ needs.release-dry-run.result }}" == "success" ]] || exit 1
 
 defaults:
   run:
