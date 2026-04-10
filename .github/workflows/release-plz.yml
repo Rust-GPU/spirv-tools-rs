@@ -12,9 +12,11 @@ jobs:
     name: Release-plz release
     if: ${{ github.repository_owner == 'rust-gpu' }}
     runs-on: ubuntu-latest
+    environment: release
     permissions:
       contents: write
       pull-requests: read
+      id-token: write
     steps:
       - &checkout
         name: Checkout repository
